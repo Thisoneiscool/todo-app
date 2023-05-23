@@ -1,0 +1,25 @@
+<h1>Todo List</h1>
+<div *ngIf="todos$ | async as todos">
+  <ul>
+    <li
+      *ngFor="let todo of todos"
+      [ngClass]="{ completed: todo.completed }"
+      (click)="switch(todo)"
+    >
+      <!-- <span *ngIf="todo.completed">&#10003;</span>
+      {{ todo.title }} -->
+      <input
+        type="checkbox"
+        [(ngModel)]="todo.completed"
+        (change)="switch(todo)"
+      />
+      <span [class.checked]="todo.completed">{{ todo.title }}</span>
+      <button (click)="delete(todo.id)">Delete</button>
+      <button (click)="edit(todo)">Edit</button>
+    </li>
+  </ul>
+  <!-- <div>
+    <input [(ngModel)]="newTodo" placeholder="New Todo Item">
+    <button (click)="add()">Add</button>
+  </div> -->
+</div>
